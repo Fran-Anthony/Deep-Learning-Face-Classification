@@ -29,3 +29,44 @@ import kagglehub
 # Descargar dataset
 path = kagglehub.dataset_download("jessicali9530/celeba-dataset")
 print("Path to dataset files:", path)
+```
+
+## Procedimiento Experimental
+
+### Preprocesamiento de datos
+- Etiquetado de imágenes según el tipo de oclusión.
+- División en conjuntos de entrenamiento (80%) y validación (20%).
+
+### Modelos utilizados
+- **MobileNetV2:** Fine-tuning de las últimas capas para clasificación de oclusiones.
+- **ResNet50:** Evaluación comparativa para medir desempeño frente a MobileNetV2.
+- Generación de datos aumentados mediante `ImageDataGenerator`.
+
+### Entrenamiento y Evaluación
+- Monitoreo de curvas de pérdida y precisión.
+- Comparación entre modelos entrenados con y sin oclusiones.
+- Medición del tiempo promedio de inferencia por imagen.
+
+### Exportación del modelo
+- Conversión a **TensorFlow Lite (.tflite)** para uso en dispositivos móviles o embebidos.
+
+---
+
+## Requisitos
+- Python 3.10 o superior
+- TensorFlow
+- Keras
+- OpenCV
+- Pandas
+- Numpy
+- Matplotlib
+- Seaborn
+- scikit-learn
+- Kagglehub
+
+---
+
+## Uso
+1. Clonar el repositorio:
+```bash
+git clone <URL_DEL_REPOSITORIO>
