@@ -1,31 +1,53 @@
 # FACE-OCLUSION_DEEP_LEARNING
 
-## Trabajo de Fin de Unidad 02
-**Estudio comparativo de algoritmos de detección de rostros basados en HOG y CNN con análisis de técnicas de oclusión**
+## Descripción
+Proyecto realizado como trabajo de fin de la Unidad 02 en el curso de Ingeniería de Sistemas.  
+Se trata de un **estudio comparativo de algoritmos de detección de rostros** basados en HOG y CNN, con análisis de técnicas de oclusión.  
+El proyecto utiliza el dataset **CelebA** para entrenar modelos de detección de rostros y clasificación de oclusiones como gafas, sombrero, desenfoque y ausencia de oclusión.
 
-### Integrantes
+## Integrantes
 - CHOQUE QUISPE JADYRA CH'ASKA - 204795  
 - HANCCO CHAMPI FRAN ANTHONY - 204797  
 - JALLO PACCAYA YASUMY MARICELY - 204799  
 
-### Descripción
-Este proyecto fue desarrollado como parte de un curso universitario y consiste en un análisis comparativo de algoritmos de detección de rostros, evaluando cómo afectan las oclusiones (gafas, sombreros, desenfoque, etc.) en la precisión de los modelos. Se entrenaron modelos CNN (MobileNetV2 y ResNet50) usando el dataset CelebA para clasificar imágenes de rostros con diferentes tipos de oclusión.
+## Contenido del proyecto
+1. **Importación de datos:**  
+   Descarga del dataset CelebA mediante la librería `kagglehub` y carga de imágenes y atributos.  
 
-El objetivo principal es:
-- Comparar el rendimiento de modelos de detección de rostros entrenados con y sin datos de oclusión.
-- Analizar métricas de precisión y pérdida.
-- Preparar modelos para inferencia en dispositivos móviles mediante TensorFlow Lite.
+2. **Preprocesamiento:**  
+   - Etiquetado de imágenes según tipo de oclusión (`Eyeglasses`, `Blurry`, `Hat`, `No Occlusion`).  
+   - División en conjuntos de entrenamiento (80%) y validación (20%).  
 
----
+3. **Modelos utilizados:**  
+   - **MobileNetV2**: Para clasificación de rostros con oclusiones, con fine-tuning de las últimas 20 capas.  
+   - Generación de datos aumentados con `ImageDataGenerator`.  
+   - Entrenamiento y evaluación del modelo con y sin datos de oclusiones.  
 
-### Dataset
-- **Fuente:** [CelebA Dataset](https://www.kaggle.com/datasets/jessicali9530/celeba-dataset)  
-- **Uso en el proyecto:** Descarga y carga mediante la biblioteca `kagglehub`.  
-- **Contenido:** Imágenes de rostros de celebridades con atributos como Eyeglasses, Blurry, Wearing_Hat, etc.
+4. **Evaluación del modelo:**  
+   - Métricas de precisión y pérdida de entrenamiento y validación.  
+   - Comparación del desempeño entre modelos entrenados con y sin oclusiones.  
+   - Medición del tiempo promedio de detección.  
 
-```python
-import kagglehub
+5. **Predicción de imágenes individuales:**  
+   Función `predict_image_class(image_path)` para clasificar imágenes en las 4 categorías de oclusión.
 
-# Descargar dataset
-path = kagglehub.dataset_download("jessicali9530/celeba-dataset")
-print("Path to dataset files:", path)
+6. **Exportación del modelo:**  
+   Conversión del modelo entrenado a **TensorFlow Lite** (`.tflite`) para uso en dispositivos móviles o embebidos.
+
+## Requisitos
+- Python 3.10 o superior  
+- TensorFlow  
+- Keras  
+- OpenCV  
+- Pandas  
+- Numpy  
+- Matplotlib  
+- Seaborn  
+- scikit-learn  
+- Kagglehub  
+
+
+## Resultados
+# Precisión final de MobileNetV2 con oclusiones: ~94.10%
+# Precisión final de MobileNetV2 sin oclusiones: 100%
+# Tiempo promedio de inferencia por imagen: 0.35 segundos
