@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">DeepLearning</string>
+    <string name="take_picture">Take Picture</string>
+    <string name="launch_gallery">Launch Gallery</string>
+    <string name="classified_as">Classified as:</string>
+    <string name="image_view_description">Image for classification</string>
+</resources>
+
